@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "655973360543",
+    "firebase_url": "https://pill-dispenser-289e4-default-rtdb.firebaseio.com",
+    "project_id": "pill-dispenser-289e4",
+    "storage_bucket": "pill-dispenser-289e4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:655973360543:android:9c8b138a912ab5649cd3aa",
+        "android_client_info": {
+          "package_name": "com.patient_tracking_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "655973360543-1n2sbo2dob5uh5814n906ra5src1jpjs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.patient_tracking_app",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "655973360543-otcpg7k4fl0s1fchs23nurbg2f0fs4p0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.patient_tracking_app",
+            "certificate_hash": "d76a9f64f103ec2481ed3f939189aa2b858a3241"
+          }
+        },
+        {
+          "client_id": "655973360543-flimi6hvdrltdm94823ljdcm92g4ehb9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCFfeWuKkEyivekw6aTY_3IHWBo1OKVsA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "655973360543-flimi6hvdrltdm94823ljdcm92g4ehb9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

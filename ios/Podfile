@@ -14,6 +14,8 @@ target 'patient_tracking_app' do
 
   pod 'RNSVG', :path => '../node_modules/react-native-svg'
 
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
   target 'patient_tracking_appTests' do
     inherit! :complete
     # Pods for testing

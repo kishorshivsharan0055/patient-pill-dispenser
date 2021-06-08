@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {FAB} from 'react-native-paper';
-import {AnimatedCircularProgress} from 'react-native-circular-progress';
+import database, {FirebaseDatabaseTypes} from '@react-native-firebase/database';
 import firestore, {
   FirebaseFirestoreTypes,
 } from '@react-native-firebase/firestore';
-import database, {FirebaseDatabaseTypes} from '@react-native-firebase/database';
+import React, {useEffect, useState} from 'react';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {AnimatedCircularProgress} from 'react-native-circular-progress';
+import {FAB} from 'react-native-paper';
 import {PillDetails} from '../../utils/types';
 
 interface PatientInfoProps {
@@ -42,6 +42,14 @@ export const PatientInfo: React.FC<PatientInfoProps> = ({
         setData(value);
         setPills(value.data().pills);
       });
+  };
+
+  const deletePill = async (index: number) => {
+    pills.splice(index, 1);
+    await firestore().collection('users').doc(id).update({
+      pills: pills,
+    });
+    getData();
   };
 
   useEffect(() => {
@@ -159,24 +167,42 @@ export const PatientInfo: React.FC<PatientInfoProps> = ({
           marginTop: 20,
           padding: 10,
           elevation: 0.8,
+          marginBottom: 10,
         }}>
         <Text style={{fontSize: 15, fontWeight: 'bold'}}>Pill Details</Text>
-
         {pills != null ? (
           <View style={{padding: 10}}>
-            {pills.map(value => (
+            {pills.map((value, index: number) => (
               <View
+                key={index}
                 style={{
                   backgroundColor: 'white',
-                  elevation: 2,
+                  elevation: 4,
                   marginBottom: 10,
+                  flexDirection: 'row',
+                  borderRadius: 10,
+                  padding: 10,
+                  margin: 5,
                 }}>
-                <Text style={{fontSize: 20, fontWeight: 'bold'}}>
-                  {' '}
-                  {value.pill_name}{' '}
-                </Text>
-                <Text> Quantity: {value.quantity} </Text>
-                <Text> Time: {value.timing} </Text>
+                <View style={{flex: 1}}>
+                  <Text style={{fontSize: 20, fontWeight: 'bold'}}>
+                    {' '}
+                    {value.pill_name}{' '}
+                  </Text>
+                  <Text> Quantity: {value.quantity} </Text>
+                  <Text> Time: {value.timing} </Text>
+                </View>
+                <TouchableOpacity
+                  style={{
+                    justifyContent: 'center',
+                    padding: 10,
+                  }}
+                  onPress={() => deletePill(index)}>
+                  <Image
+                    style={{width: 35, height: 35}}
+                    source={require('../../assets/trash.png')}
+                  />
+                </TouchableOpacity>
               </View>
             ))}
           </View>

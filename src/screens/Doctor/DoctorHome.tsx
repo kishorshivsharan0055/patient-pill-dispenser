@@ -1,17 +1,11 @@
-import React, {useEffect, useState} from 'react';
-import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import {Card, FAB} from 'react-native-paper';
 import firestore, {
   FirebaseFirestoreTypes,
 } from '@react-native-firebase/firestore';
-import {auth} from '../../../firebase-setup';
+import React, {useEffect, useState} from 'react';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Card, FAB} from 'react-native-paper';
 import Snackbar from 'react-native-snackbar';
+import {auth} from '../../../firebase-setup';
 
 interface DoctorHomeProps {
   navigation: any;

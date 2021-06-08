@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
-import {View, Image, Text, StyleSheet} from 'react-native';
-import {TextInput, Button, Menu, Divider} from 'react-native-paper';
-import {auth} from '../../firebase-setup';
 import firestore from '@react-native-firebase/firestore';
+import React, {useState} from 'react';
+import {StyleSheet, Text, View} from 'react-native';
+import {Button, Divider, Menu, TextInput} from 'react-native-paper';
 import Snackbar from 'react-native-snackbar';
+import {auth} from '../../firebase-setup';
 
 interface SignupProps {
   navigation: any;

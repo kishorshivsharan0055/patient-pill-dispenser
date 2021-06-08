@@ -1,7 +1,7 @@
 import firestore from '@react-native-firebase/firestore';
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {Button, Divider, Menu, TextInput} from 'react-native-paper';
+import {Button, Checkbox, TextInput} from 'react-native-paper';
 import Snackbar from 'react-native-snackbar';
 import {PillDetails} from '../../utils/types';
 
@@ -24,6 +24,10 @@ export const PillConfiguration: React.FC<pill_configurationProps> = ({
   const [menuTitle, setmenuTitle] = useState('Select Time');
   const openMenu = () => setVisibleMenu(true);
   const closeMenu = () => setVisibleMenu(false);
+
+  const [checked1, setChecked1] = React.useState(false);
+  const [checked2, setChecked2] = React.useState(false);
+  const [checked3, setChecked3] = React.useState(false);
 
   let [pills, setPills] = useState<Array<PillDetails>>([]);
 
@@ -49,7 +53,12 @@ export const PillConfiguration: React.FC<pill_configurationProps> = ({
   const {id} = route.params;
 
   const savePillConfiguration = () => {
-    pills.push({pill_name: PillName, quantity: Qty, timing: menuTitle});
+    let timings = '';
+    if (checked1) timings += ' Morning ';
+    if (checked2) timings += ' Afternoon ';
+    if (checked3) timings += ' Night ';
+
+    pills.push({pill_name: PillName, quantity: Qty, timing: timings});
 
     firestore()
       .collection('users')
@@ -90,47 +99,33 @@ export const PillConfiguration: React.FC<pill_configurationProps> = ({
         onChangeText={text => setQty(text)}
       />
 
-      <View style={{alignSelf: 'center'}}>
-        <Menu
-          visible={visibleMenu}
-          onDismiss={closeMenu}
-          contentStyle={{width: 350, backgroundColor: 'white'}}
-          anchor={
-            <Button
-              style={{width: 350}}
-              mode="contained"
-              color="purple"
-              onPress={openMenu}>
-              {menuTitle}
-            </Button>
-          }>
-          <Menu.Item
-            onPress={() => {
-              setmenuTitle('Morning');
-              closeMenu();
-            }}
-            titleStyle={{color: 'purple'}}
-            title="Morning"
-          />
-          <Divider />
-          <Menu.Item
-            onPress={() => {
-              setmenuTitle('Afternoon');
-              closeMenu();
-            }}
-            titleStyle={{color: 'purple'}}
-            title="Afternoon"
-          />
-          <Divider />
-          <Menu.Item
-            onPress={() => {
-              setmenuTitle('Night');
-              closeMenu();
-            }}
-            titleStyle={{color: 'purple'}}
-            title="Night"
-          />
-        </Menu>
+      <View>
+        <Checkbox.Item
+          label="Morning"
+          color="purple"
+          status={checked1 ? 'checked' : 'unchecked'}
+          onPress={() => {
+            setChecked1(!checked1);
+          }}
+        />
+
+        <Checkbox.Item
+          label="Afternoon"
+          color="purple"
+          status={checked2 ? 'checked' : 'unchecked'}
+          onPress={() => {
+            setChecked2(!checked2);
+          }}
+        />
+
+        <Checkbox.Item
+          label="Night"
+          color="purple"
+          status={checked3 ? 'checked' : 'unchecked'}
+          onPress={() => {
+            setChecked3(!checked3);
+          }}
+        />
       </View>
 
       <Button
